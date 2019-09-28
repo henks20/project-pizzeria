@@ -143,10 +143,9 @@
     processOrder() {
       const thisProduct = this;
       console.log('thisProduct in processOrder', thisProduct);
-      // console.log('test', this.id);
       /* read all data from the form (using utils.serializeFormToObject) and save it to const formData */
-      // const formData = utils.serializeFormToObject(thisProduct.form);
-      // console.log('formData', formData);
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log('formData', formData);
       /* set variable price to equal thisProduct.data.price */
 
       /* START LOOP: for each paramId in thisProduct.data.params */
@@ -160,14 +159,16 @@
       /* END IF: if option is selected and option is not default */
       /* START ELSE IF: if option is not selected and option is default */
       /* deduct price of option from price */
+      // }
+      /* END ELSE IF: if option is not selected and option is default */
+      // }
+      /* END LOOP: for each optionId in param.options */
+      // }
+      /* END LOOP: for each paramId in thisProduct.data.params */
+
+      /* set the contents of thisProduct.priceElem to be the value of variable price */
     }
-    /* END ELSE IF: if option is not selected and option is default */
   }
-  /* END LOOP: for each optionId in param.options */
-
-  /* END LOOP: for each paramId in thisProduct.data.params */
-
-  /* set the contents of thisProduct.priceElem to be the value of variable price */
 
 
 
