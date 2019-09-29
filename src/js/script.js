@@ -97,7 +97,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
 
     renderInMenu() {
@@ -126,22 +126,22 @@
 
     initAccordion() {
       const thisProduct = this;
-      console.log('thisProduct', thisProduct);
+      //console.log('thisProduct', thisProduct);
       /* find the clickable trigger (the element that should react to clicking) */
       // const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      // console.log('clickableTrigger', clickableTrigger);
+      // //console.log('clickableTrigger', clickableTrigger);
       /* START: click event listener to trigger */
       // clickableTrigger.addEventListener('click', function (e) {
       thisProduct.accordionTrigger.addEventListener('click', function (e) {
-        console.log('clicked');
+        //console.log('clicked');
         /* prevent default action for event */
         e.preventDefault();
         /* toggle active class on element of thisProduct */
         thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-        console.log('thisProduct', thisProduct);
+        //console.log('thisProduct', thisProduct);
         /* find all active products */
         const allActiveProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log(allActiveProducts);
+        //console.log(allActiveProducts);
         /* START LOOP: for each active product */
         for (let activeProduct of allActiveProducts) {
           /* START: if the active product isn't the element of thisProduct */
@@ -158,7 +158,7 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log('thisProduct in initOrderForm', thisProduct);
+      //console.log('thisProduct in initOrderForm', thisProduct);
 
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -241,8 +241,8 @@
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
-      console.log('AmountWidget', thisWidget);
-      console.log('constructor arguments', element);
+      //console.log('AmountWidget', thisWidget);
+      //console.log('constructor arguments', element);
     }
 
     getElements(element) {
@@ -302,9 +302,9 @@
   const app = {
     initMenu: function () {
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
       // const testProduct = new Product();
-      // console.log('testProduct:', testProduct);
+      // //console.log('testProduct:', testProduct);
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
@@ -316,11 +316,11 @@
     },
     init: function () {
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
