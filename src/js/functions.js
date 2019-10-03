@@ -42,7 +42,7 @@ utils.convertDataSourceToDbJson = function () {
     productJson.push(Object.assign({ id: key }, dataSource.products[key]));
   }
 
-  //console.log(JSON.stringify({product: productJson, order: []}, null, '  '));
+  console.log(JSON.stringify({ product: productJson, order: [] }, null, '  '));
 };
 
 Handlebars.registerHelper('ifEquals', function (arg1, arg2, options) {
