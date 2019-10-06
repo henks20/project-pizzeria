@@ -21,7 +21,6 @@ export class Product {
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-    //console.log('new Product:', thisProduct);
   }
 
   renderInMenu() {
@@ -50,22 +49,17 @@ export class Product {
 
   initAccordion() {
     const thisProduct = this;
-    //console.log('thisProduct', thisProduct);
     /* find the clickable trigger (the element that should react to clicking) */
     // const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-    // //console.log('clickableTrigger', clickableTrigger);
     /* START: click event listener to trigger */
     // clickableTrigger.addEventListener('click', function (e) {
     thisProduct.accordionTrigger.addEventListener('click', function (e) {
-      //console.log('clicked');
       /* prevent default action for event */
       e.preventDefault();
       /* toggle active class on element of thisProduct */
       thisProduct.element.classList.toggle(classNames.menuProduct.wrapperActive);
-      //console.log('thisProduct', thisProduct);
       /* find all active products */
       const allActiveProducts = document.querySelectorAll(select.all.menuProductsActive);
-      //console.log(allActiveProducts);
       /* START LOOP: for each active product */
       for (let activeProduct of allActiveProducts) {
         /* START: if the active product isn't the element of thisProduct */
@@ -82,7 +76,6 @@ export class Product {
 
   initOrderForm() {
     const thisProduct = this;
-    //console.log('thisProduct in initOrderForm', thisProduct);
 
     thisProduct.form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -157,8 +150,6 @@ export class Product {
 
     /* set the contents of thisProduct.priceElem to be the value of variable price */
     thisProduct.priceElem.innerHTML = thisProduct.price;
-
-    console.log('params', thisProduct.params);
   }
 
   initAmountWidget() {

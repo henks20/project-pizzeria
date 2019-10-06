@@ -19,7 +19,6 @@ export class Cart {
     thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
     thisCart.getElements(element);
     thisCart.initActions();
-    console.log('new Cart', thisCart);
   }
 
   getElements(element) {
@@ -103,8 +102,6 @@ export class Cart {
   add(menuProduct) {
     const thisCart = this;
 
-    console.log('adding product', menuProduct);
-
     /* generate HTML based on template */
     const generatedHTML = templates.cartProduct(menuProduct);
 
@@ -119,8 +116,6 @@ export class Cart {
     thisCart.dom.productList.appendChild(generatedDOM);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log('thisCart.products', thisCart.products);
-
     thisCart.update();
   }
 
@@ -135,9 +130,6 @@ export class Cart {
     }
 
     thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
-    console.log('totalNumber', thisCart.totalNumber);
-    console.log('subtotalPrice', thisCart.subtotalPrice);
-    console.log('totalPrice', thisCart.totalPrice);
 
     for (let key of thisCart.renderTotalsKeys) {
       for (let elem of thisCart.dom[key]) {

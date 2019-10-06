@@ -9,8 +9,6 @@ export class AmountWidget {
     thisWidget.getElements(element);
     thisWidget.setValue(thisWidget.input.value);
     thisWidget.initActions();
-    //console.log('AmountWidget', thisWidget);
-    //console.log('constructor arguments', element);
   }
 
   getElements(element) {
