@@ -16,7 +16,18 @@ const app = {
 
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
-    thisApp.activePage(thisApp.pages[0].id);
+    // thisApp.activatePage(thisApp.pages[0].id); -> usuniete bo chce zeby po F5 strona zostala na tym samym URLu
+
+    let pagesMatchingHash = [];
+    // *** NIE DZIALA *** : po kliknięciu F5 strona wraca na order -> nie wiem dlaczego, nie potrafię odnalezc błedu
+    if (window.location.hash.length > 2) {
+      const idFromHash = window.location.hash.replace('#/', '');
+      pagesMatchingHash = thisApp.pages.filter(function (page) {
+        return page.id == idFromHash;
+      });
+      thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
+    }
+
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (e) {
@@ -26,12 +37,13 @@ const app = {
         // get id page from href 
         const id = clickedElement.getAttribute('href').replace('#', '');
         // activate page
-        thisApp.activePage(id);
+        thisApp.activatePage(id);
       });
     }
   },
 
-  activePage: function (pageId) {
+  activatePage: function (pageId) {
+    window.location.hash = '#' + pageId;
     const thisApp = this;
     for (let link of thisApp.navLinks) {
       link.classList.toggle(classNames.nav.active, link.getAttribute('href') === '#' + pageId);
