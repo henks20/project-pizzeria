@@ -9,6 +9,9 @@ import {
   settings,
   classNames
 } from './settings.js';
+import {
+  Booking
+} from './components/Booking.js';
 
 const app = {
   initPages: function () {
@@ -17,17 +20,18 @@ const app = {
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
     // thisApp.activatePage(thisApp.pages[0].id); -> usuniete bo chce zeby po F5 strona zostala na tym samym URLu
-
+    const idFromHash = window.location.hash.replace('#/', '');
+    console.log('1', idFromHash);
     let pagesMatchingHash = [];
+    console.log('2', pagesMatchingHash, thisApp.pages, window.location.hash);
     // *** NIE DZIALA *** : po kliknięciu F5 strona wraca na order -> nie wiem dlaczego, nie potrafię odnalezc błedu
     if (window.location.hash.length > 2) {
-      const idFromHash = window.location.hash.replace('#/', '');
       pagesMatchingHash = thisApp.pages.filter(function (page) {
         return page.id == idFromHash;
       });
-      thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
     }
-
+    console.log('3', pagesMatchingHash);
+    thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (e) {
@@ -43,6 +47,7 @@ const app = {
   },
 
   activatePage: function (pageId) {
+    console.log('4', pageId);
     window.location.hash = '#' + pageId;
     const thisApp = this;
     for (let link of thisApp.navLinks) {
@@ -95,12 +100,21 @@ const app = {
       app.cart.add(e.detail.product);
     });
   },
+
+  initBooking: function () {
+    const thisApp = this;
+
+    const bookingContainer = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(bookingContainer);
+  },
+
   init: function () {
     const thisApp = this;
 
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
+    thisApp.initBooking();
   },
 };
 
