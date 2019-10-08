@@ -20,6 +20,7 @@ const app = {
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
     // thisApp.activatePage(thisApp.pages[0].id); -> usuniete bo chce zeby po F5 strona zostala na tym samym URLu
+    console.log('0', window.location.hash);
     const idFromHash = window.location.hash.replace('#/', '');
     console.log('1', idFromHash);
     let pagesMatchingHash = [];
