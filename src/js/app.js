@@ -20,18 +20,14 @@ const app = {
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
     // thisApp.activatePage(thisApp.pages[0].id); -> usuniete bo chce zeby po F5 strona zostala na tym samym URLu
-    console.log('0', window.location.hash);
     const idFromHash = window.location.hash.replace('#', '');
-    console.log('1', idFromHash);
     let pagesMatchingHash = [];
-    console.log('2', pagesMatchingHash, thisApp.pages, window.location.hash);
-    // *** NIE DZIALA *** : po kliknięciu F5 strona wraca na order -> nie wiem dlaczego, nie potrafię odnalezc błedu
     if (window.location.hash.length > 2) {
       pagesMatchingHash = thisApp.pages.filter(function (page) {
         return page.id == idFromHash;
       });
     }
-    console.log('3', pagesMatchingHash);
+
     thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
 
     for (let link of thisApp.navLinks) {
@@ -48,7 +44,6 @@ const app = {
   },
 
   activatePage: function (pageId) {
-    console.log('4', pageId);
     window.location.hash = '#' + pageId;
     const thisApp = this;
     for (let link of thisApp.navLinks) {
