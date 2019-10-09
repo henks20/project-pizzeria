@@ -39,6 +39,12 @@ export class BaseWidget {
     console.log('widget value:', thisWidget.value);
   }
 
+  setValue(value) {
+    const thisWidget = this;
+
+    thisWidget.value = value;
+  }
+
   announce() {
     const thisWidget = this;
 
