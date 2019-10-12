@@ -1,4 +1,4 @@
-import { templates, select, settings } from '../settings.js';
+import { templates, select, settings, classNames } from '../settings.js';
 import { utils } from '../utils.js';
 import {
   AmountWidget
@@ -26,6 +26,7 @@ export class Booking {
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+    thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
   }
 
@@ -36,6 +37,10 @@ export class Booking {
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
+
+    thisBooking.dom.wrapper.addEventListener('updated', function () {
+      thisBooking.updateDOM();
+    });
   }
 
   getData() {
@@ -101,6 +106,7 @@ export class Booking {
       }
     }
     console.log('final data', thisBooking);
+    thisBooking.updateDOM();
   }
 
   makeBooked(date, hour, duration, table) {
@@ -117,6 +123,42 @@ export class Booking {
         thisBooking.booked[date][hourBlock] = [];
       }
       thisBooking.booked[date][hourBlock].push(table);
+    }
+  }
+
+  updateDOM() {
+    // ERROR: zle przyporządkowuje klasy dla zarezerwowanych stolow
+    const thisBooking = this;
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    let isAllTablesAvailable = false;
+
+    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined') {
+      isAllTablesAvailable = true;
+      for (let table of thisBooking.dom.tables) {
+        table.classList.remove(classNames.booking.tableBooked);
+      }
+    }
+
+    for (let table of thisBooking.dom.tables) {
+      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      if (!isNaN(tableId)) {
+        tableId = parseInt(tableId);
+      }
+      console.log('1', thisBooking.booked[thisBooking.date]);
+      console.log('2', thisBooking.booked[thisBooking.date][thisBooking.hour]);
+      console.log('3', thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table) > -1);
+      console.log('4', table);
+      if (!isAllTablesAvailable
+        && thisBooking.booked[thisBooking.date]
+        && thisBooking.booked[thisBooking.date][thisBooking.hour]
+        && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table) > -1) {
+        console.log('tableadd', tableId);
+        table.classList.add(classNames.booking.tableBooked);
+      } else {
+        table.classList.remove(classNames.booking.tableBooked);
+        console.log('tablreremove', tableId);
+      }
     }
   }
 }
