@@ -218,7 +218,7 @@ export class Booking {
       phone: thisBooking.dom.phone.value,
       adress: thisBooking.dom.address.value,
       starters: thisBooking.starters
-    }
+    };
 
     const options = {
       method: 'POST',
@@ -256,11 +256,11 @@ export class Booking {
       if (thisBooking.reservedTable == ''
         || thisBooking.dom.phone.value == ''
         || thisBooking.dom.address.value == '') {
-        return alert('Correct the form!')
+        return alert('Correct the form!');
       }
 
       thisBooking.sendData();
       thisBooking.clearTables();
-    })
+    });
   }
 }
