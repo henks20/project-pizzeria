@@ -14,6 +14,7 @@ export class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
+    // thisBooking.prepareReservation();
   }
 
   render(bookingContainer) {
@@ -86,7 +87,6 @@ export class Booking {
     const thisBooking = this;
     thisBooking.booked = {};
 
-    console.log('starting data', bookings, eventsCurrent, eventsRepeat);
     for (let item of eventsCurrent) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
@@ -105,7 +105,6 @@ export class Booking {
         }
       }
     }
-    console.log('final data', thisBooking);
     thisBooking.updateDOM();
   }
 
@@ -127,7 +126,6 @@ export class Booking {
   }
 
   updateDOM() {
-    // ERROR: zle przyporządkowuje klasy dla zarezerwowanych stolow
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
@@ -145,20 +143,21 @@ export class Booking {
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
       }
-      console.log('1', thisBooking.booked[thisBooking.date]);
-      console.log('2', thisBooking.booked[thisBooking.date][thisBooking.hour]);
-      console.log('3', thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table) > -1);
-      console.log('4', table);
+
       if (!isAllTablesAvailable
         && thisBooking.booked[thisBooking.date]
         && thisBooking.booked[thisBooking.date][thisBooking.hour]
         && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table) > -1) {
-        console.log('tableadd', tableId);
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-        console.log('tablreremove', tableId);
       }
     }
   }
+
+  // prepareReservation() {
+  //   const thisBooking = this;
+  //   const allTables = thisBooking.dom.tables;
+  //   console.log('test', allTables);
+  // }
 }
