@@ -26,9 +26,8 @@ const app = {
       pagesMatchingHash = thisApp.pages.filter(function (page) {
         return page.id == idFromHash;
       });
+      thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
     }
-
-    thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
 
     for (let link of thisApp.navLinks) {
       link.addEventListener('click', function (e) {
