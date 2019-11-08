@@ -12,8 +12,8 @@ export class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.prepareReservation();
-    thisBooking.submitForm();
+    // thisBooking.prepareReservation();
+    // thisBooking.submitForm();
   }
 
   render(bookingContainer) {
@@ -130,137 +130,135 @@ export class Booking {
 
   updateDOM() {
     const thisBooking = this;
-    thisBooking.date = thisBooking.datePicker.value;
-    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
-    let isAllTablesAvailable = false;
+    const newDate = thisBooking.datePicker.value;
+    const newHour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-    if (typeof thisBooking.booked[thisBooking.date] == 'undefined' || typeof thisBooking.booked[thisBooking.date][thisBooking.hour] == 'undefined') {
-      isAllTablesAvailable = true;
+    if (thisBooking.date !== newDate || thisBooking.hour !== newHour) {
       for (let table of thisBooking.dom.tables) {
-        table.classList.remove(classNames.booking.tableBooked);
+        table.classList.remove('active');
       }
     }
 
-    for (let table of thisBooking.dom.tables) {
-      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
-      if (!isNaN(tableId)) {
-        tableId = parseInt(tableId);
-      }
+    thisBooking.date = newDate;
+    thisBooking.hour = newHour;
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-      if (!isAllTablesAvailable
-        && thisBooking.booked[thisBooking.date]
-        && thisBooking.booked[thisBooking.date][thisBooking.hour]
-        && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table) > -1) {
+    for (let table of thisBooking.dom.tables) {
+      if (thisBooking.booked[thisBooking.date] &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour] &&
+        thisBooking.booked[thisBooking.date][thisBooking.hour].indexOf(parseInt(table.getAttribute('data-table'))) !== -1) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+
   }
 
-  prepareReservation() {
-    const thisBooking = this;
-    const allTables = thisBooking.dom.tables;
+  // prepareReservation() {
+  //   const thisBooking = this;
+  //   const allTables = thisBooking.dom.tables;
 
-    for (let table of allTables) {
-      table.addEventListener('click', function (e) {
-        e.preventDefault();
+  //   for (let table of allTables) {
+  //     table.addEventListener('click', function (e) {
+  //       e.preventDefault();
 
-        if (!table.classList.contains(classNames.booking.tableBooked)) {
-          table.classList.toggle(classNames.booking.tableBooked);
-          thisBooking.reservedTables = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
-        }
+  //       if (!table.classList.contains(classNames.booking.tableBooked)) {
+  //         table.classList.toggle(classNames.booking.tableBooked);
+  //         thisBooking.reservedTables = parseInt(table.getAttribute(settings.booking.tableIdAttribute));
+  //       }
 
-        const allReservedTables = document.querySelectorAll(select.booking.tablesReserved);
+  //       const allReservedTables = document.querySelectorAll(select.booking.tablesReserved);
 
-        for (let reservedTable of allReservedTables) {
-          if (reservedTable !== table) {
-            reservedTable.classList.remove(classNames.booking.tableReservation);
-          }
-        }
-      });
+  //       for (let reservedTable of allReservedTables) {
+  //         if (reservedTable !== table) {
+  //           reservedTable.classList.remove(classNames.booking.tableReservation);
+  //         }
+  //       }
+  //     });
 
 
-      thisBooking.dom.hourPicker.addEventListener('updated', function () {
-        table.classList.remove(classNames.booking.tableReservation);
-      });
+  //     thisBooking.dom.hourPicker.addEventListener('updated', function () {
+  //       table.classList.remove(classNames.booking.tableReservation);
+  //     });
 
-      thisBooking.dom.datePicker.addEventListener('change', function () {
-        table.classList.remove(classNames.booking.tableReservation);
-      });
+  //     thisBooking.dom.datePicker.addEventListener('change', function () {
+  //       table.classList.remove(classNames.booking.tableReservation);
+  //     });
 
-      thisBooking.starters = [];
+  //     thisBooking.starters = [];
 
-      for (let starter of thisBooking.dom.starters) {
-        starter.addEventListener('change', function () {
-          if (this.checked) {
-            thisBooking.starters.push(starter.value);
-          } else {
-            thisBooking.starters.splice(thisBooking.starters.indexOf(starter.value, 1));
-          }
-        });
-      }
-    }
-  }
+  //     for (let starter of thisBooking.dom.starters) {
+  //       starter.addEventListener('change', function () {
+  //         if (this.checked) {
+  //           thisBooking.starters.push(starter.value);
+  //         } else {
+  //           thisBooking.starters.splice(thisBooking.starters.indexOf(starter.value, 1));
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 
-  sendData() {
-    const thisBooking = this;
-    // EROR failed to construct url 
-    // const createURL = new URL(settings.db.url, "/", settings.db.booking);
-    const createURL = settings.db.url + '/' + settings.db.booking;
+  // sendData() {
+  //   const thisBooking = this;
+  //   // EROR failed to construct url 
+  //   // const createURL = new URL(settings.db.url, "/", settings.db.booking);
+  //   const createURL = settings.db.url + '/' + settings.db.booking;
 
-    const payload = {
-      date: thisBooking.datePicker.dom.input.value,
-      hour: thisBooking.hourPicker.value,
-      table: thisBooking.reservedTable,
-      ppl: thisBooking.peopleAmount.value,
-      duration: thisBooking.dom.hoursAmount.value,
-      phone: thisBooking.dom.phone.value,
-      adress: thisBooking.dom.address.value,
-      starters: thisBooking.starters
-    };
+  //   const payload = {
+  //     date: thisBooking.datePicker.dom.input.value,
+  //     hour: thisBooking.hourPicker.value,
+  //     table: thisBooking.reservedTable,
+  //     ppl: thisBooking.peopleAmount.value,
+  //     duration: thisBooking.dom.hoursAmount.value,
+  //     phone: thisBooking.dom.phone.value,
+  //     adress: thisBooking.dom.address.value,
+  //     starters: thisBooking.starters
+  //   };
 
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    };
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(payload),
+  //   };
 
-    fetch(createURL, options)
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
-        thisBooking.getData();
-      });
-  }
+  //   fetch(createURL, options)
+  //     .then(function (res) {
+  //       return res.json();
+  //     })
+  //     .then(function (parsedResponse) {
+  //       console.log('parsedResponse', parsedResponse);
+  //       thisBooking.getData();
+  //     });
+  // }
 
-  clearTables() {
-    const thisBooking = this;
-    const allTables = thisBooking.dom.tables;
+  // clearTables() {
+  //   const thisBooking = this;
+  //   const allTables = thisBooking.dom.tables;
 
-    for (let table of allTables) {
-      table.classList.remove(classNames.booking.tableReservation);
-    }
-  }
+  //   for (let table of allTables) {
+  //     table.classList.remove(classNames.booking.tableReservation);
+  //   }
+  // }
 
-  submitForm() {
-    const thisBooking = this;
+  // submitForm() {
+  //   const thisBooking = this;
 
-    thisBooking.dom.form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      console.log(thisBooking);
-      if (thisBooking.reservedTable == ''
-        || thisBooking.dom.phone.value == ''
-        || thisBooking.dom.address.value == '') {
-        return alert('Correct the form!');
-      }
+  //   thisBooking.dom.form.addEventListener('submit', function (e) {
+  //     e.preventDefault();
+  //     console.log(thisBooking);
+  //     if (thisBooking.reservedTable == ''
+  //       || thisBooking.dom.phone.value == ''
+  //       || thisBooking.dom.address.value == '') {
+  //       return alert('Correct the form!');
+  //     }
 
-      thisBooking.sendData();
-      thisBooking.clearTables();
-    });
-  }
+  //     thisBooking.sendData();
+  //     thisBooking.clearTables();
+  //   });
+  // }
 }
