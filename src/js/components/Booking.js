@@ -12,8 +12,6 @@ export class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.selectTable();
-    thisBooking.selectOptions();
   }
 
   render(bookingContainer) {
@@ -80,6 +78,8 @@ export class Booking {
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]) {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        thisBooking.selectOptions();
+        thisBooking.selectTable();
       });
 
     thisBooking.dom.formSubmit.addEventListener('click', function () {
@@ -231,6 +231,7 @@ export class Booking {
         for (let table of thisBooking.dom.tables) {
           if (table.classList.contains('active')) {
             table.classList.add(classNames.booking.tableBooked);
+            table.classList.remove('active');
           }
         }
       });
