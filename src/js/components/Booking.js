@@ -33,7 +33,7 @@ export class Booking {
     const thisBooking = this;
 
     thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.peopleAmount);
-    thisBooking.peopleAmount = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
@@ -92,11 +92,15 @@ export class Booking {
     const thisBooking = this;
     thisBooking.booked = {};
 
-    for (let item of eventsCurrent) {
+    for (let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      for (let table of item.table) {
+        thisBooking.makeBooked(item.date, item.hour, item.duration, table);
+
+      }
     }
 
-    for (let item of bookings) {
+    for (let item of eventsCurrent) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
 
@@ -123,7 +127,7 @@ export class Booking {
     const startHour = utils.hourToNumber(hour);
 
     for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
-      if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
+      if (!thisBooking.booked[date][hourBlock]) {
         thisBooking.booked[date][hourBlock] = [];
       }
       thisBooking.booked[date][hourBlock].push(table);
@@ -162,6 +166,7 @@ export class Booking {
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    thisBooking.selectedUserTables = [];
 
     for (let table of thisBooking.dom.tables) {
       table.addEventListener('click', function () {
@@ -172,6 +177,11 @@ export class Booking {
         }
         if (table.classList.contains('active')) {
           thisBooking.selectedTable = table.getAttribute('data-table');
+          thisBooking.selectedUserTables.push(thisBooking.selectedTable);
+        } else {
+          thisBooking.selectedUserTables = thisBooking.selectedUserTables.filter(function (item) {
+            return item != table.getAttribute('data-table');
+          });
         }
       });
     }
@@ -205,7 +215,9 @@ export class Booking {
     const payload = {
       date: thisBooking.datePicker.dom.input.value,
       hour: utils.numberToHour(thisBooking.hour),
-      table: thisBooking.selectedTable,
+      table: thisBooking.selectedUserTables.map(function (item) {
+        return parseInt(item);
+      }),
       repeat: false,
       duration: hourDuration,
       ppl: peopleAmount,
