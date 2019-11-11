@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Pizzeria</title>
-  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Pizzeria</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,300i,700%7COswald:300,500,700&amp;subset=latin-ext"
+    rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="vendor/range-slider.min.css">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
   <header class="header">
     <div class="container">
       <div class="header__wrapper">
@@ -21,31 +27,30 @@
         <div id="cart" class="cart">
           <div class="cart__summary">
             <span class="cart__total-number">0</span>
-            <span class="cart__total-price">Total price: <strong>$0</strong></span>
+            <span class="cart__total-price">Total price: $<strong>0</strong></span>
             <i class="fas fa-chevron-down"></i>
             <i class="fas fa-shopping-cart cart__icon"></i>
           </div>
           <div class="cart__content">
             <form class="cart__order">
-              <ul class="cart__order-summary no-spacing">
-              </ul>
+              <ul class="cart__order-summary no-spacing"></ul>
               <ul class="cart__order-price">
-                <li>
+                <li class="cart__order-subtotal">
                   <span class="cart__order-price-name">Subtotal:</span>
-                  <span class="cart__order-price-sum">$0</span>
+                  <span class="cart__order-price-sum">$<strong>0</strong></span>
                 </li>
-                <li>
+                <li class="cart__order-delivery">
                   <span class="cart__order-price-name">Delivery:</span>
-                  <span class="cart__order-price-sum">$0</span>
+                  <span class="cart__order-price-sum">$<strong>0</strong></span>
                 </li>
-                <li>
+                <li class="cart__order-total">
                   <span class="cart__order-price-name"><strong>Total:</strong></span>
-                  <span class="cart__order-price-sum"><strong>$0</strong></span>
+                  <span class="cart__order-price-sum">$<strong>0</strong></span>
                 </li>
               </ul>
               <div class="cart__order-confirmation">
-                <input type="tel" name="phone" placeholder="Your phone">
-                <input type="text" name="address" placeholder="Your address">
+                <input type="tel" name="phone" placeholder="Your phone" />
+                <input type="text" name="address" placeholder="Your address" />
                 <button type="submit" class="btn-secondary">Order</button>
               </div>
             </form>
@@ -55,10 +60,236 @@
     </div>
   </header>
 
-    <div id="product-list" class="product-list container"></div>
+  <section class="homepage">
+    <div class="working-space">
+      <div class="main-nav  container mt-5 mb-3">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-md-6">
+            <a href="#order">
+              <div class="nav-pic pic-1">
+                <h2 class="nav-1">ORDER ONLINE</h2>
+                <p class="nav-2">Delicious food delivered to your door</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a href="#booking">
+              <div class="nav-pic pic-2">
+                <h2 class="nav-1">BOOK A TABLE</h2>
+                <p class="nav-2">Delicious tables if you deliver yourself here</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="home-div">
+        <div class="opening">
+          <div class="container">
+            <div class="opening-inside py-5">
+              <h2>OPENING HOUERS</h2>
+              <h3>TUE-SUN. 12PM - 12AM</h3>
+            </div>
+          </div>
+        </div>
+        <div class="quotes my-5">
+          <div class="container">
+            <div id="main-slider" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="./images/homepage/pizza-1.jpg" alt="image">
+                  <div class="carousel-caption">
+                    <p class="pb-1">1Lorem Ipsum</p>
+                    <p class="pb-3">1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./images/homepage/pizza-3.jpg" alt="image">
+                  <div class="carousel-caption">
+                    <p class="pb-1">2Ipsum Lorem</p>
+                    <p class="pb-3">2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="./images/homepage/pizza-4.jpg" alt="image">
+                  <div class="carousel-caption">
+                    <p class="pb-1">3Iplo Remsum</p>
+                    <p class="pb-3">3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </diV>
+        </div>
+        <div class="gallery my-5">
+          <div class="container align-items-center">
+            <div class="row">
+              <div class="col-md-3 pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-4.jpg" alt="image">
+                <div class="link-icons">
+                  <i class="fas fa-heart"><a href=#></a></i>
+                  <i class="fas fa-link"><a href=#></a></i>
+                </div>
+              </div>
+              <div class="col-md-3 pcenter pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-5.jpg" alt="image">
+                <div class="link-icons">
+                  <i class="fas fa-heart"><a href=#></a></i>
+                  <i class="fas fa-link"><a href=#></a></i>
+                </div>
+              </div>
+              <div class="col-md-3 pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-6.jpg" alt="image">
+                <div class="link-icons">
+                  <i class="fas fa-heart"><a href=#></a></i>
+                  <i class="fas fa-link"><a href=#></a></i>
+                </div>
+              </div>
+            </div>
+            <div class="row  my-4">
+              <div class="col-md-3 pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-7.jpg" alt="image">
+                <div class="link-icons">
+                  <i class="fas fa-heart"><a href=#></a></i>
+                  <i class="fas fa-link"><a href=#></a></i>
+                </div>
+              </div>
+              <div class="col-md-3 pcenter pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-8.jpg" alt="image">
+                <div class="link-icons">
+                  <i class="fas fa-heart"><a href=#></a></i>
+                  <i class="fas fa-link"><a href=#></a></i>
+                </div>
+              </div>
+              <div class="col-md-3 pic-box">
+                <img class="gallery-pic" src="./images/homepage/pizza-9.jpg" alt="image">
+                <div class="link-icons">
+                  <a href=#><i class="fas fa-heart"></i></a>
+                  <a href=#><i class="fas fa-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="container my-3">
+            <a href=#>View more on Instagram</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </section>
 
-    <script id="template-menu-product" type="text/x-handlebars-template">
-      <article class="product active"> <!-- product -->
+  <div id="pages">
+    <section id="order" class="order-page">
+      <div id="product-list" class="product-list container"></div>
+    </section>
+    <section id="booking" class="booking-page">
+      <div class="booking-wrapper container"></div>
+    </section>
+  </div>
+
+  <script id="template-booking-widget" type="text/x-handlebars-template">
+      <div class="booking-widget">
+        <h2 class="page__title no-spacing">Book a table</h2>
+        <form class="booking-form">
+          <div class="time-picker">
+            <div class="date-picker">
+              <label class="booking-option-title">Pick a date</label>
+              <input type="text" name="date">
+            </div>
+            <div class="hour-picker range-slider">
+                <div class="output"></div>
+                <label class="booking-option-title">Pick a time</label>
+              <input type="range" name="hour" value="12" min="12" max="24" step="0.5">
+            </div>
+          </div>
+          <div class="floor-plan">
+            <div class="object entry">entry</div>
+            <div class="object bar">bar</div>
+            <div class="object table" data-table="1">table-1</div>
+            <div class="object table table--round" data-table="2">table-2</div>
+            <div class="object table" data-table="3">table-3</div>
+          </div>
+          <div class="booking-options"> <!-- options -->
+            <label class="booking-option-title"> <!-- option-row -->
+              People
+              <div class="widget-amount people-amount"> <!-- widget-amount -->
+                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+                <input class="amount" type="text" name="people" value="1">
+                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+              </div>
+            </label>
+            <label class="booking-option-title"> <!-- option-row -->
+              Hours
+              <div class="widget-amount hours-amount"> <!-- widget-amount -->
+                <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
+                <input class="amount" type="text" name="hours" value="1">
+                <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
+              </div>
+            </label>
+            <div> <!-- option-row -->
+              <span class="booking-option-title">Starters</span>
+              <div class="checkbox"> <!-- checkbox -->
+                <label>
+                  <input type="checkbox" name="starter" value="water">
+                  <span class="checkbox__checkmark"></span>
+                  Water
+                </label>
+              </div>
+              <div class="checkbox"> <!-- checkbox -->
+                <label>
+                  <input type="checkbox" name="starter" value="bread">
+                  <span class="checkbox__checkmark"></span>
+                  Bread
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="order-confirmation">
+            <input type="tel" name="phone" placeholder="Your phone">
+            <input type="text" name="address" placeholder="Your address">
+            <button type="submit" class="btn-secondary">Book table</button>
+          </div>
+        </form>
+      </div>
+    </script>
+
+  <script id="template-cart-product" type="text/x-handlebars-template">
+      <li>
+        <div class="widget-amount"> <!-- widget-amount -->
+          <a class="btn-quantity btn-quantity--lt" href="#less"><i class="fas fa-minus"></i></a>
+          <input class="amount" type="text" value="{{ amount }}">
+          <a class="btn-quantity btn-quantity--lt" href="#more"><i class="fas fa-plus"></i></a>
+        </div>
+        <div class="cart__product">
+          <div class="cart__product-header">
+            <span>{{ name }}</span>
+            <span>$<strong class="cart__product-price">{{ price }}</strong></span>
+          </div>
+          <ul class="cart__product-details no-spacing">
+            {{#each params}}
+              <li>
+                <span class="cart__product-details-label">{{ label }}</span>
+                <span>{{#joinValues options}}, {{/joinValues}}</span>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+        <ul class="cart__action-buttons no-spacing">
+          <li><a href="#edit">Edit<i class="fas fa-pencil-alt"></i></a></li>
+          <li><a href="#remove">Remove<i class="fas fa-trash-alt"></i></a></li>
+        </ul>
+      </li>
+    </script>
+
+  <script id="template-menu-product" type="text/x-handlebars-template">
+      <article class="product"> <!-- product -->
 
           <header class="product__header">
             <h3 class="product__name no-spacing">{{ name }} <i class="fas fa-chevron-down product__icon"></i></h3>
@@ -115,7 +346,7 @@
                 <div class="widget-amount"> <!-- widget-amount -->
                   <h3 class="product__params-title">Select quantity</h3>
                   <a class="btn-quantity" href="#less"><i class="fas fa-minus"></i></a>
-                  <input type="text" name="amount" value="1">
+                  <input class="amount" type="text" value="1">
                   <a class="btn-quantity" href="#more"><i class="fas fa-plus"></i></a>
                 </div>
                 <p class="product__total-price">
@@ -137,8 +368,15 @@
     </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
-  <script src="js/functions.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="vendor/range-slider.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="js/app.js" type="module"></script>
 </body>
+
 </html>

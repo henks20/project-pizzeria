@@ -1,0 +1,105 @@
+.pic-1  {
+  background-image: url('../../images/homepage/pizza-1.jpg');
+  object-fit: cover;
+  text-align: center;
+  color: white;
+  min-height: 150px;
+  border-radius: 5px;
+}
+
+.pic-2  {
+  background-image: url('../../images/homepage/pizza-2.jpg');
+  object-fit: cover;
+  text-align: center;
+  color: white;
+  min-height: 150px;
+  border-radius: 5px;
+}
+
+.main-nav a  {
+  text-decoration: none;
+}
+
+.nav-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: 1s all;
+}
+
+.nav-pic:hover .nav-1  {
+  top: 30%;
+}
+
+.nav-2  {
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.nav-pic:hover .nav-2  {
+  top: 60%;
+  transition: 2s;
+}
+
+.opening-inside  {
+  background-color: $color-main;
+  color: white;
+  text-align: center;
+  min-height: 160px;
+  border-radius: 5px;
+}
+
+.carousel-item img {
+  width: 40%;
+  position: relative;
+}
+
+.carousel-caption  {
+  position: absolute;
+  color: black;
+  width: 50%;
+  left: 45%;
+  top: 10px;
+  text-align: justify;
+}
+
+.gallery-pic {
+  width: 130%;
+  height: 216px;
+  object-fit: cover;
+}
+
+.pcenter {
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+.link-icons   {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%,-50%);
+  font-size: 30px;
+  color: #fff;
+}
+
+.pic-box:hover .link-icons  {
+  display: block;
+
+}
+
+.link-icons .fas:hover {
+  color: $color-main;
+}
+
+footer a {
+  color: $color-main;
+}
+
+.home-div.hidden {
+  display: none;
+}
