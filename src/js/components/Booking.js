@@ -94,10 +94,6 @@ export class Booking {
 
     for (let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
-      for (let table of item.table) {
-        thisBooking.makeBooked(item.date, item.hour, item.duration, table);
-
-      }
     }
 
     for (let item of eventsCurrent) {
