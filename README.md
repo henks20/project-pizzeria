@@ -1,11 +1,11 @@
 # Project pizzeria
 
-Pizzeria website where you can order food online from various categories and in various quantities. What is more, you can reserve a table with the choice of day, time, number of people and table preferences.
+Pizzeria website where you can order food online from various categories and in various quantities. What is more, you can reserve a table with the choice of day, time, number of people and table preferences. Once you order food or book table, you will see a confirmation in the console (DevTools). 
 
 Project using: 
 * HTML
 * SCSS
-* JavaScript.
+* JavaScript
 * JSON-Server.
 
 LIVE demo: [here](http://rocky-island-18247.herokuapp.com/)
