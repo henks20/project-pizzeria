@@ -4,7 +4,7 @@ Pizzeria website where you can order food online from various categories and in 
 
 Project using: 
 * HTML
-* SCSS
+* Sass
 * JavaScript
 * JSON-Server.
 
